@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Simple Linear Regression\n\nsetwd(dir = '../Part 2 - Regression/Section 4 - Simple Linear Regression/')\n\n# Importing the dataset\ndataset = read.csv('Salary_Data.csv')\n\n\n# Splitting the dataset into the Training set and Test set\n# install.packages('caTools')\nlibrary(caTools)\nset.seed(123)\nsplit = sample.split(dataset$Salary, SplitRatio = 2/3)\ntraining_set = subset(dataset, split == TRUE)\ntest_set = subset(dataset, split == FALSE)\n\n# Feature Scaling\n# training_set = scale(training_set)\n# test_set = scale(test_set)\n\n#Make a model\nsalary_pred_model = lm(Salary ~ YearsExperience,\n                  training_set)\n\n#Make a prediction\ny_pred = predict(object = salary_pred_model, newdata = test_set)\n\n#Visualise the result\n\nlibrary(ggplot2)\nggplot() +\n  geom_point(aes(x = training_set$YearsExperience, y = training_set$Salary),\n             color = 'red') +\n  geom_line(aes(x = training_set$YearsExperience, y = predict(salary_pred_model, training_set)),\n            color = 'blue') +\n  ggtitle(\"Salary vs Experience (Training Set)\") +\n  xlab(\"Years Experience\") +\n  ylab(\"Salary\")\n\nggplot() +\n  geom_point(aes(x = test_set$YearsExperience, y = test_set$Salary),\n             color = 'red') +\n  geom_line(aes(x = training_set$YearsExperience, y = predict(salary_pred_model, training_set)),\n            color = 'blue') +\n  ggtitle(\"Salary vs Experience (Test Set)\") +\n  xlab(\"Years Experience\") +\n  ylab(\"Salary\")\n",
+    "created" : 1509974069885.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3125479356",
+    "id" : "BB470FE6",
+    "lastKnownWriteTime" : 1509991313,
+    "last_content_update" : 1509991313864,
+    "path" : "~/GitHub/Machine Learning A-Z/Part 2 - Regression/Section 4 - Simple Linear Regression/kh-simple_linear_regression.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
